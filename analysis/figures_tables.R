@@ -176,6 +176,45 @@ p_map <- ggplot() +
                      name = "Rebel tactics")
 ggsave(paste0(plotdir, "/", "reuters_map.png"), width = 10, height = 4, dpi = 400, p_map)
 
+
+# bw version
+p_map_bw <- ggplot() +
+  geom_sf(data = select_sf,
+          aes(fill = actor),
+          size = 0.1, 
+          color = "black", 
+          alpha = 0.5) +
+  facet_wrap(~ window, nrow = 1) +
+  geom_sf(data = merged_sub,
+          aes(shape = type_label),
+          alpha = 0.7,
+          size = 1.7,
+          show.legend = "point") +
+  coord_sf(datum = NA) + 
+  scale_fill_manual(values = c("black", "grey", "white"),
+                    name = "Territorial Control",
+                  guide = guide_legend(override.aes = list(shape = NA))) +
+  labs(title = "Territorial control and conflict events in NE Nigeria in 2015",
+       subtitle = "Conflict events within two weeks of observing territorial control",
+       x = "",
+       y = "") +
+  theme(axis.text = element_blank(),
+        panel.grid = element_blank(),
+        panel.background = element_blank(),
+        legend.position = "bottom",
+        legend.key = element_blank()) +
+  # scale_color_manual(name = "Rebel tactics",
+  #                    values = c("black", "black"),
+  #                    guide = guide_legend(override.aes = list(fill = NA,
+  #                                                             size = 5))) +
+  scale_shape_manual(values = c(19,17),
+                     name = "Rebel tactics",
+                     guide = guide_legend(override.aes = list(fill = NA,
+                                                              size = 5)))
+ggsave(paste0(plotdir, "/", "reuters_map_bw.png"), width = 10, height = 4, dpi = 500, p_map_bw)
+
+
+
 ####################################################
 # Figure 4: Territorial control estimates Colombia 
 ####################################################
