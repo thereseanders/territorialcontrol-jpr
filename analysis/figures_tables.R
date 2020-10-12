@@ -231,9 +231,9 @@ mycols <- rev(c("#2c7bb6", #Blue
 names(mycols) <- levels(hmm_col$control_lab)
 
 mycols_bw <- rev(c("#f5f5f5", #light grey
-                "#d6d6d6",
-                "#8f8f8f", # Yellow
-                "#5c5c5c",
+                "#e0e0e0",
+                "#a3a3a3", # Yellow
+                "#666666",
                 "#000000"))
 names(mycols_bw) <- levels(hmm_col$control_lab)
 
