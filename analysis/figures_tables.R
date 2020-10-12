@@ -145,19 +145,22 @@ merged_sub <- st_join(events_nga, select_sub) %>%
 p_map <- ggplot() +
   geom_sf(data = select_sf,
           aes(fill = actor),
-          size = 0.2, color = "grey98", alpha = 0.2) +
+          size = 0.2, 
+          color = "grey98", 
+          alpha = 0.2) +
   facet_wrap(~ window, nrow = 1) +
   geom_sf(data = merged_sub,
           aes(color = type_label, shape = type_label),
           alpha = 0.7,
-          size = 0.8,
+          size = 1.7,
           show.legend = "point") +
   coord_sf(datum = NA) + 
   scale_fill_manual(name = "Territorial Control", 
                     values = rev(c("#2c7bb6",
                                    "goldenrod",
                                    "#d7191c")),
-                    guide = guide_legend(override.aes = list(linetype = "blank", shape = NA))) +
+                    guide = guide_legend(override.aes = list(linetype = "blank", 
+                                                             shape = NA))) +
   labs(title = "Territorial control and conflict events in NE Nigeria in 2015",
        subtitle = "Conflict events within two weeks of observing territorial control",
        x = "",
@@ -165,16 +168,17 @@ p_map <- ggplot() +
   theme(axis.text = element_blank(),
         panel.grid = element_blank(),
         panel.background = element_blank(),
-        legend.position = "bottom") +
+        legend.position = "bottom",
+        legend.key = element_blank()) +
   
   scale_color_manual(values = c("#d7191c", #red
                                 "#2c7bb6"),
                      name = "Rebel tactics",
                      guide = guide_legend(override.aes = list(fill = NA,
-                                                              size = 3))) +
+                                                              size = 5))) +
   scale_shape_manual(values = c(19,17),
                      name = "Rebel tactics")
-ggsave(paste0(plotdir, "/", "reuters_map.png"), width = 10, height = 4, dpi = 400, p_map)
+ggsave(paste0(plotdir, "/", "reuters_map.png"), width = 10, height = 4.5, dpi = 500, p_map)
 
 
 # bw version
@@ -211,7 +215,7 @@ p_map_bw <- ggplot() +
                      name = "Rebel tactics",
                      guide = guide_legend(override.aes = list(fill = NA,
                                                               size = 5)))
-ggsave(paste0(plotdir, "/", "reuters_map_bw.png"), width = 10, height = 4, dpi = 500, p_map_bw)
+ggsave(paste0(plotdir, "/", "reuters_map_bw.png"), width = 10, height = 4.5, dpi = 500, p_map_bw)
 
 
 
@@ -225,6 +229,14 @@ mycols <- rev(c("#2c7bb6", #Blue
                 "#fdae61",
                 "#d7191c"))
 names(mycols) <- levels(hmm_col$control_lab)
+
+mycols_bw <- rev(c("#f5f5f5", #light grey
+                "#d6d6d6",
+                "#8f8f8f", # Yellow
+                "#5c5c5c",
+                "#000000"))
+names(mycols_bw) <- levels(hmm_col$control_lab)
+
 
 # Numerical values for control levels
 hmm_col_monthly <- hmm_col %>%
@@ -283,7 +295,42 @@ p_col_yearly <- ggplot() +
         legend.key.width = unit(2, "cm")) +
   labs(title = "Yearly averages of monthly estimates of territorial control")  +
   coord_sf(xlim = c(-79, -67), ylim = c(-4,12.5), datum = NA)
-ggsave(paste0(plotdir, "/", "hmm_col_yearly.png"), width = 8, height = 10, dpi = 400, p_col_yearly)
+ggsave(paste0(plotdir, "/", "hmm_col_yearly.png"), width = 8, height = 10, dpi = 500, p_col_yearly)
+
+
+## Plotting Figure 4 (print bw version)
+p_col_yearly_bw <- ggplot() +
+  geom_sf(data = col_out_sf,
+          alpha = 0.2,
+          size = 0.05) +
+  geom_sf(data = subset(hmm_col_yearly, year %in% seq(2006,2017)),
+          aes(fill = control_mean), 
+          size = 0.01, 
+          color = "black",
+          alpha = 1) +
+  facet_wrap(~year, nrow = 3) +
+  theme_bw() +
+  scale_fill_gradientn(name = "",
+                       colors = mycols_bw,
+                       breaks = c(0, 0.5, 1),
+                       limits=c(0,1),
+                       labels = c("Full rebel\ncontrol",
+                                  "Highly\ncontested",
+                                  "Full government\ncontrol")) +
+  theme(legend.position = "bottom",
+        legend.margin=margin(0,0,0,0),
+        legend.box.margin=margin(5,5,2,2),
+        axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        panel.border = element_blank(),
+        panel.background = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        legend.box.background = element_blank(),
+        legend.key.width = unit(2, "cm")) +
+  labs(title = "Yearly averages of monthly estimates of territorial control")  +
+  coord_sf(xlim = c(-79, -67), ylim = c(-4,12.5), datum = NA)
+ggsave(paste0(plotdir, "/", "hmm_col_yearly_bw.png"), width = 8, height = 10, dpi = 400, p_col_yearly_bw)
 
 ####################################################
 # Figure 5: Territorial control estimates Nigeria 
@@ -339,6 +386,39 @@ p_nga_yearly <- ggplot(subset(hmm_nga_yearly, year > 2008)) +
   labs(title = "Yearly averages of monthly estimates of territorial control in NE Nigeria") +
   coord_sf(datum = NA)
 ggsave(paste0(plotdir, "/", "hmm_nga_yearly.png"), width = 8, height = 8, dpi = 400, p_nga_yearly)
+
+
+# Plotting figure 5
+p_nga_yearly_bw <- ggplot(subset(hmm_nga_yearly, year > 2008)) +
+  geom_sf(data = nga_out_sf,
+          alpha = 0.9,
+          size = 0.1) +
+  geom_sf(aes(fill = control), size = 0.01, color = "black") +
+  facet_wrap(~year, nrow = 3) +
+  theme_bw() +
+  scale_fill_gradientn(name = "",
+                       colors = mycols_bw,
+                       breaks = c(0, 0.5, 1),
+                       limits=c(0,1),
+                       labels = c("Full rebel\ncontrol",
+                                  "Highly\ncontested",
+                                  "Full government\ncontrol")) +
+  theme(legend.position = "bottom",
+        legend.margin=margin(0,0,0,0),
+        legend.box.margin=margin(5,5,2,2),
+        axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        panel.border = element_blank(),
+        panel.background = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        legend.box.background = element_blank(),
+        legend.key.width = unit(2, "cm")) +
+  labs(title = "Yearly averages of monthly estimates of territorial control in NE Nigeria") +
+  coord_sf(datum = NA)
+ggsave(paste0(plotdir, "/", "hmm_nga_yearly_bw.png"), width = 8, height = 8, dpi = 500, p_nga_yearly_bw)
+
+
 
 ####################################################
 # Figure 6: Acled validation
@@ -442,4 +522,4 @@ p_acled_paper <- ggplot(sub_paper,
                      breaks = x_b) +
   theme_light() +
   coord_cartesian(ylim = c(0, 0.55))
-ggsave(paste0(plotdir, "/", "cor_acled_paper.png"), width = 7, height = 4, dpi = 400, p_acled_paper)
+ggsave(paste0(plotdir, "/", "cor_acled_paper.png"), width = 7, height = 4, dpi = 500, p_acled_paper)
