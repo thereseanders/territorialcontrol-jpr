@@ -1,8 +1,14 @@
+<p float="left">
+  <img src="https://github.com/thereseanders/territorialcontrol-jpr/blob/master/plots/hmm_col_yearly.png" width="300"/>
+  <img src="https://github.com/thereseanders/territorialcontrol-jpr/blob/master/plots/hmm_nga_yearly.png" width="300"/>
+  <img src="https://github.com/thereseanders/territorialcontrol-jpr/blob/master/plots/territorialcontrol.png" width="300"/>
+</p>
+
 # Replication code
 
 The repository contains the data and code to replicate the analysis in the following article.
 
-Anders, Therese: "Territorial control in civil wars: Theory and measurement using machine learning" In *Journal of Peace Research* (Forthcoming)
+[Anders, Therese: "Territorial control in civil wars: Theory and measurement using machine learning" In *Journal of Peace Research* (2020)](https://journals.sagepub.com/doi/abs/10.1177/0022343320959687?journalCode=jpra).
 
 This repository uses the [`renv`](https://rstudio.github.io/renv/articles/renv.html) package for `R` package dependency management. 
 
@@ -27,7 +33,7 @@ Note: some hand-coding was necessary to attribute ACLED events to the respective
 2. `./precleaning/weights_nganorth.R` and `./precleaning/weights_col.R` (as well as `./precleaning/weights_col_noassess.R` and `./precleaning/weights_col_noofficial.R` for robustness checks): Compute exposure of grid cells to conflict events using spatial and temporal weights.
 
 ## Compute HMM
-Run `./est/hmm_col.R` `./est/hmm_nga.R` (as well as `./est/hmm_col_noassess.R` and `./est/hmm_col_noofficial.R` for robustness checks) to compute HMM. 
+Run `./est/hmm_col.R` `./est/hmm_nga.R` (as well as `./est/hmm_col_noassess.R` and `./est/hmm_col_noofficial.R` for robustness checks) to compute HMM. The analysis is powered by the [`HMM`](https://cran.r-project.org/web/packages/HMM/index.html) package.
 
 ## Graphs and tables
 
@@ -43,4 +49,6 @@ Note that because the PRIO Grid 2.0 data is very large, only the relevant subset
 `./analysis/validation_col.R` performs the validation exercise. Deforestation are obtained from the *Instituto de Hidrologia, Meteorologiıa y Estudios Ambientales* and in geoTiff format and have been aggregated to hexagonal grid cells. Estimation of clustered standard errors based on [`clusterSEs`](https://github.com/cran/clusterSEs/blob/master/R/clusterBS.glm.R) package. Note that the estimation of clustered standard errors takes some time, so this code is shared separate from the `R` scripts to replicate the figures and tables in the article and online appendix.
 
 ### Sensitivity analysis
-The script `./analysis/vary_emissions.R` performs sensitivity of the Nigeria HMM estimates to variations in the emission probabilities respectively. Note that the estimation of $N = 389$ HMMs takes some time, therefore this code is shared separate from the scripts to replicate the figures in the online appendix. The code leverages the [`furrr`](https://github.com/DavisVaughan/furrr) package and should not be run in RStudio for multicore processing.
+The script `./analysis/vary_emissions.R` performs sensitivity of the Nigeria HMM estimates to variations in the emission probabilities respectively. Note that the estimation of `N = 389` HMMs takes some time, therefore this code is shared separate from the scripts to replicate the figures in the online appendix. The code leverages the [`furrr`](https://github.com/DavisVaughan/furrr) package for multicore processing.
+
+<img src="https://github.com/thereseanders/territorialcontrol-jpr/blob/master/plots/appendix/plot2_evvariance_rubin.png" width="1000"/> <figcaption>Sensitivity of estimates to changes in the matrix of emission probabilities (NE Nigeria 2013–2017). </figcaption>
