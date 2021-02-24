@@ -1,17 +1,16 @@
-<p float="center">
-  <img src="https://github.com/thereseanders/territorialcontrol-jpr/blob/master/plots/hmm_col_yearly.png" width="350"/>
-  <img src="https://github.com/thereseanders/territorialcontrol-jpr/blob/master/plots/hmm_nga_yearly.png" width="350"/>
+<p float="left">
+  <img src="https://github.com/thereseanders/territorialcontrol-jpr/blob/master/plots/hmm_col_yearly.png" width="325"/>
+  <img src="https://github.com/thereseanders/territorialcontrol-jpr/blob/master/plots/hmm_nga_yearly.png" width="325"/>
 </p>
 
 # Replication code
 
 The repository contains the data and code to replicate the analysis for: 
 
-:page_facing_up: Anders, Therese (2020): ["Territorial control in civil wars: Theory and measurement using machine learning"](https://journals.sagepub.com/doi/abs/10.1177/0022343320959687?journalCode=jpra) In *Journal of Peace Research 57*(6): 701-714.
+:page_facing_up: Anders, Therese (2020): [**Territorial control in civil wars: Theory and measurement using machine learning**](https://journals.sagepub.com/doi/abs/10.1177/0022343320959687?journalCode=jpra) In *Journal of Peace Research 57*(6): 701-714.
 
 [:paperclip: **Online appendix**](http://therese.rbind.io/publication/anders2019_jpr/territorialcontrol_jpr_appendix_200608.pdf)
 
----
 
 <p float="center">
   <img src="https://github.com/thereseanders/territorialcontrol-jpr/blob/master/plots/territorialcontrol.png" width="500"/>
