@@ -11,16 +11,17 @@ The repository contains the data and code to replicate the analysis for:
 
 [:paperclip: **Online appendix**](http://therese.rbind.io/publication/anders2019_jpr/territorialcontrol_jpr_appendix_200608.pdf)
 
+---
+
 <p float="center">
   <img src="https://github.com/thereseanders/territorialcontrol-jpr/blob/master/plots/territorialcontrol.png" width="500"/>
 </p>
 
-
+---
 
 This repository leverages the [`renv`](https://rstudio.github.io/renv/articles/renv.html) package for `R` package dependency management. 
 
 *Note: The raw GTD and GED data is not included in this repository. Please follow the download instructions below to obtain the data from the original sources. The repository contains the relevant subset of events, as well as the code to reproduce the pre-cleaning steps to get from the raw data to the conflict event exposure values.*
-
 
 
 ## Pre-cleaning steps
