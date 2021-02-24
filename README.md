@@ -1,18 +1,26 @@
-<p float="left">
-  <img src="https://github.com/thereseanders/territorialcontrol-jpr/blob/master/plots/hmm_col_yearly.png" width="300"/>
-  <img src="https://github.com/thereseanders/territorialcontrol-jpr/blob/master/plots/hmm_nga_yearly.png" width="300"/>
-  <img src="https://github.com/thereseanders/territorialcontrol-jpr/blob/master/plots/territorialcontrol.png" width="300"/>
+<p float="center">
+  <img src="https://github.com/thereseanders/territorialcontrol-jpr/blob/master/plots/hmm_col_yearly.png" width="350"/>
+  <img src="https://github.com/thereseanders/territorialcontrol-jpr/blob/master/plots/hmm_nga_yearly.png" width="350"/>
 </p>
 
 # Replication code
 
-The repository contains the data and code to replicate the analysis in the following article.
+The repository contains the data and code to replicate the analysis for: 
 
-[Anders, Therese: "Territorial control in civil wars: Theory and measurement using machine learning" In *Journal of Peace Research* (2020)](https://journals.sagepub.com/doi/abs/10.1177/0022343320959687?journalCode=jpra).
+:page_facing_up: Anders, Therese (2020): ["Territorial control in civil wars: Theory and measurement using machine learning"](https://journals.sagepub.com/doi/abs/10.1177/0022343320959687?journalCode=jpra) In *Journal of Peace Research 57*(6): 701-714.
 
-This repository uses the [`renv`](https://rstudio.github.io/renv/articles/renv.html) package for `R` package dependency management. 
+[:paperclip: **Online appendix**](http://therese.rbind.io/publication/anders2019_jpr/territorialcontrol_jpr_appendix_200608.pdf)
+
+<p float="center">
+  <img src="https://github.com/thereseanders/territorialcontrol-jpr/blob/master/plots/territorialcontrol.png" width="500"/>
+</p>
+
+
+
+This repository leverages the [`renv`](https://rstudio.github.io/renv/articles/renv.html) package for `R` package dependency management. 
 
 *Note: The raw GTD and GED data is not included in this repository. Please follow the download instructions below to obtain the data from the original sources. The repository contains the relevant subset of events, as well as the code to reproduce the pre-cleaning steps to get from the raw data to the conflict event exposure values.*
+
 
 
 ## Pre-cleaning steps
@@ -38,7 +46,7 @@ Run `./est/hmm_col.R` `./est/hmm_nga.R` (as well as `./est/hmm_col_noassess.R` a
 ## Graphs and tables
 
 ### Article
-The code to reproduce all figures in the article can be found in the `./analysis/figures_tables.R` script.
+The code to reproduce all figures in the [article](https://journals.sagepub.com/doi/abs/10.1177/0022343320959687?journalCode=jpra#articleCitationDownloadContainer) can be found in the `./analysis/figures_tables.R` script.
 
 ### Online appendix
 The code to reproduce all figures and tables in the appendix (with the exception of the Colombia validation exercise and sensitivity analysis) can be found in the `./analysis/figures_tables_appendix.R` script. 
